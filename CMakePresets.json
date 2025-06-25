@@ -18,6 +18,18 @@
       }
     },
     {
+      "name": "default-release",
+      "displayName": "Default Release Build (GCC)",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build",
+      "toolchainFile": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+        "CMAKE_CXX_STANDARD": "17"
+      }
+    },
+    {
       "name": "windows-msvc-debug",
       "generator": "Visual Studio 17 2022",
       "architecture": "x64",
@@ -33,6 +45,10 @@
     {
       "name": "default",
       "configurePreset": "default"
+    },
+    {
+      "name": "default-release",
+      "configurePreset": "default-release"
     },
     {
       "name": "msvc",
