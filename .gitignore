@@ -1,5 +1,7 @@
 .vscode/
 
+vcpkg/
+
 build/
 out/
 cmake-build-*/

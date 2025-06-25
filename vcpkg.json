@@ -1,0 +1,9 @@
+{
+  "name": "cpp-short",
+  "version-string": "0.1.0",
+  "dependencies": [
+    "fmt",
+    "spdlog",
+    "boost-asio"
+  ]
+}
