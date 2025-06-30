@@ -17,7 +17,8 @@ class HealthEvent : public Event {
 public:
   HealthEvent(int value) : m_value(value) {};
   ~HealthEvent() {};
-  int value() const;
+  
+  int getValue() const { return m_value; };
   const std::string name() override { return m_name; };
 private:
   int m_value;

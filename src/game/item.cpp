@@ -13,16 +13,6 @@ inline const std::string to_string(ItemType type) {
 }
 
 void Item::use(std::string name) {
-  switch (type) {
-    case ItemType::Beer: {
-      ItemUsedEvent event(std::make_shared<Item>(this), name);
-      EventBus::getInstance().publish(std::make_shared<const ItemUsedEvent>(event));
-      break;
-    }
-    case ItemType::Saw: return ;
-    case ItemType::Magnifier: return ;
-    case ItemType::Cuff: return ;
-    case ItemType::Inverter: return ;
-    default: return ;
-  } 
+  ItemUsedEvent event(this->type, name);
+  EventBus::getInstance().publish(std::make_shared<const ItemUsedEvent>(event));
 }

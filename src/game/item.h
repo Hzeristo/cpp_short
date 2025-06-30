@@ -19,7 +19,7 @@ using ItemPtr = std::shared_ptr<Item>;
 class Item {
 public:
   explicit Item(ItemType type) : type(type) {}
-  ~Item() {}
+  ~Item() { std::cout << "Item destoryed" << std::endl; }
 
   void use(std::string name);
 
@@ -28,14 +28,15 @@ public:
 
 class ItemUsedEvent : public Event {
 public:
-  ItemUsedEvent(ItemPtr item, std::string name) : item(item), playerName(name) {}
+  ItemUsedEvent(ItemType item, std::string name) : item(item), playerName(name) {}
   ~ItemUsedEvent() {}
 
   const std::string name() override { return "ItemUsedEvent"; }
-  const std::string getItem() const { return ::to_string(item->type); }
+  const std::string getItem() const { return ::to_string(item); }
   const std::string getPlayer() const { return playerName; }
   const std::string to_string() const { return "ItemUsedEvent: " + getItem() + " by " + getPlayer(); }
 
-  ItemPtr item;
+private:
+  ItemType item;
   std::string playerName;
 };  
