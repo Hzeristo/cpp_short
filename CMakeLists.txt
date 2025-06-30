@@ -20,7 +20,7 @@ add_executable(${PROJECT_NAME}
     ${MODEL_SRC}
     ${VIEW_SRC}
     ${COMMON_SRC}
-    ${ALL_HEADERS}  # 可选
+    ${ALL_HEADERS}
 )
 
 target_include_directories(${PROJECT_NAME}
