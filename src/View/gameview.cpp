@@ -10,8 +10,8 @@ GameView::GameView(QWidget* parent) : QWidget(parent) {
     statusLabel = new QLabel("Game Start", this);
     layout->addWidget(statusLabel);
 
-    selfButton = new QPushButton("Shoot on yourself", this);
-    opponentButton = new QPushButton("Shoot on your opponent", this);
+    selfButton = new QPushButton("Shoot yourself", this);
+    opponentButton = new QPushButton("Shoot  your opponent", this);
 
     layout->addWidget(selfButton);
     layout->addWidget(opponentButton);

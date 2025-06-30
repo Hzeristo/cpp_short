@@ -15,7 +15,7 @@ inline const std::string to_string(ItemType type) {
 void Item::use(std::string name) {
   switch (type) {
     case ItemType::Beer: {
-      ItemUsedEvent event(std::make_shared<Item>(this), name);
+      ItemUsedEvent event(getPtr(), name);
       EventBus::getInstance().publish(std::make_shared<const ItemUsedEvent>(event));
       break;
     }

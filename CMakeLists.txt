@@ -5,7 +5,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
-
+set(CMAKE_WIN32_EXECUTABLE OFF)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
