@@ -1,7 +1,7 @@
 #pragma once
 
-#include "common.h"
-#include "event.h"
+#include "../Common/common.h"
+#include "../event.h"
 
 //不全
 enum class ItemType {
