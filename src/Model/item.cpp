@@ -12,7 +12,10 @@ inline const std::string to_string(ItemType type) {
   }
 }
 
+Item::Item(ItemType type, EventBus& bus) : type(type), bus(bus) {
+  throw std::runtime_error("Not implemented for the first demo");
+}
+
 void Item::use(std::string name) {
-  ItemUsedEvent event(this->type, name);
-  EventBus::getInstance().publish(std::make_shared<const ItemUsedEvent>(event));
+  throw std::runtime_error("Not implemented for the first demo");
 }
