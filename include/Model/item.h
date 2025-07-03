@@ -16,11 +16,12 @@ inline const std::string to_string(ItemType type);
 
 class Item;
 using ItemPtr = std::shared_ptr<Item>;
-class Item {
+class Item : public std::enable_shared_from_this<Item>{
 public:
   Item(ItemType type, EventBus& bus);
   ~Item() { std::cout << "Item destoryed" << std::endl; }
 
+  std::shared_ptr<Item> getPtr() { return shared_from_this(); }
   void use(std::string name);
 
   ItemType type;
