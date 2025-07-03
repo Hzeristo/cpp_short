@@ -12,14 +12,14 @@ void Player::onTryItemUseEvent(const TryItemUseEvent &event) {
 
 void Player::subscribe(){
   std::weak_ptr<Player> w_self = shared_from_this();
-  bus.subscribe<HealthEvent>([w_self](ConstEventPtr e) {
+  bus.subscribe<HealthEvent>([w_self](EventPtr e) {
     if (auto self = w_self.lock()) { 
       auto healthEvent = std::static_pointer_cast<HealthEvent>(e);
       self->onHealthEvent(healthEvent->getValue());
     } 
   });
   
-  bus.subscribe<TryItemUseEvent>([w_self](ConstEventPtr e) {
+  bus.subscribe<TryItemUseEvent>([w_self](EventPtr e) {
     if (auto self = w_self.lock()) { 
       auto tryItemUseEvent = std::static_pointer_cast<TryItemUseEvent>(e);
       self->onTryItemUseEvent(*tryItemUseEvent);

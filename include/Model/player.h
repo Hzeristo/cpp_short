@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Common/common.h"
-#include "../event.h"
+#include "event.h"
 
 class Player;
 using PlayerPtr = std::shared_ptr<Player>;
@@ -43,32 +43,4 @@ private:
   EventBus& bus;
 
   void subscribe();
-};
-
-class HealthEvent : public Event {
-public:
-  HealthEvent(int value, std::string target) : m_value(value), m_target(target) {};
-  ~HealthEvent() {};
-  
-  int getValue() const { return m_value; };
-  std::string getTarget() const { return m_target; };
-  const std::string name() override { return m_name; };
-private:
-  int m_value;
-  std::string m_target;
-  const std::string m_name = "HealthEvent";
-};
-
-class Health2VMEvent : public Event {
-public:
-  Health2VMEvent(int value, std::string target) : m_value(value), m_target(target) {};
-  ~Health2VMEvent() {};
-  
-  int getValue() const { return m_value; };
-  std::string getTarget() const { return m_target; };
-  const std::string name() override { return m_name; };
-private:
-  int m_value;
-  std::string m_target;
-  const std::string m_name = "Health2VMEvent";
 };
