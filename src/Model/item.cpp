@@ -12,17 +12,10 @@ inline const std::string to_string(ItemType type) {
   }
 }
 
+Item::Item(ItemType type, EventBus& bus) : type(type), bus(bus) {
+  throw std::runtime_error("Not implemented for the first demo");
+}
+
 void Item::use(std::string name) {
-  switch (type) {
-    case ItemType::Beer: {
-      ItemUsedEvent event(std::make_shared<Item>(this), name);
-      EventBus::getInstance().publish(std::make_shared<const ItemUsedEvent>(event));
-      break;
-    }
-    case ItemType::Saw: return ;
-    case ItemType::Magnifier: return ;
-    case ItemType::Cuff: return ;
-    case ItemType::Inverter: return ;
-    default: return ;
-  } 
+  throw std::runtime_error("Not implemented for the first demo");
 }
