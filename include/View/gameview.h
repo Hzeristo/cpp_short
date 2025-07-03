@@ -18,9 +18,13 @@ signals:
 
 public slots:
     void updateStatusText(const QString& text);  // 显示游戏信息
-
+    void updateHealth(const QString& playerName, int health);
+    void updateOperator(const QString& operatorName);
+    
 private:
     QLabel* statusLabel;
     QPushButton* selfButton;
     QPushButton* opponentButton;
+    QLabel* healthLabelSelf;   // 显示玩家生命值
+    QLabel* healthLabelEnemy;  // 显示电脑生命值
 };
