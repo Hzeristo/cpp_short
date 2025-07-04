@@ -14,8 +14,8 @@ int main(int argc, char *argv[]) {
 
     Game game(bus);
 
-    Player player_me(5, 5, 1, bus);
-    Player player_ai(5, 5, 1, bus);
+    Player player_me("me", 5, 5, 1, bus);
+    Player player_ai("ai", 5, 5, 1, bus);
 
     Gun gun(bus);
 
