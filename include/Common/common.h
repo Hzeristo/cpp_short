@@ -3,7 +3,6 @@
 #include <iostream>
 #include <memory>
 
-
 //不全
 enum class ItemType {
   Beer,
