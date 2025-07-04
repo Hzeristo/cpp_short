@@ -2,7 +2,7 @@
 #include <QApplication>
 #include "View/mainwindow.h"
 #include "../include/Common/common.h"
-#include "../include/event.h"
+#include "../include/Model/event.h"
 #include "../include/Model/game.h"
 #include "../include/Model/gun.h"
 #include "../include/Model/item.h"
