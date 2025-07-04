@@ -18,6 +18,8 @@ file(GLOB_RECURSE ALL_HEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
+    src/mainwindow.cpp
+    src/viewmodel.cpp
     ${MODEL_SRC}
     ${VIEW_SRC}
     ${COMMON_SRC}

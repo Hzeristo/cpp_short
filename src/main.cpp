@@ -1,12 +1,7 @@
 #include <iostream>
 #include <QApplication>
-#include "View/mainwindow.h"
-#include "../include/Common/common.h"
-#include "../include/Model/event.h"
-#include "../include/Model/game.h"
-#include "../include/Model/gun.h"
-#include "../include/Model/item.h"
-#include "../include/Model/player.h"
+#include "../include/mainwindow.h"
+
 
 int main(int argc, char *argv[]) {
 

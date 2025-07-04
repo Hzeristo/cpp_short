@@ -1,9 +1,10 @@
 #pragma once
-/*
+#pragma once
+#pragma once
+
 #include <QObject>
 #include <QString>
-#include <vector>
-#include <memory>
+#include "Common/common.h"
 #include "Model/event.h"
 
 class ViewModel : public QObject {
@@ -12,29 +13,19 @@ class ViewModel : public QObject {
 public:
     ViewModel(EventBus& bus, QObject* parent = nullptr);
 
-    Q_INVOKABLE void fireAtEnemy();  // View中点击“开枪”按钮时触发
-    Q_INVOKABLE void useItem(int index); // 点击某个道具时触发
+    void init();  // 订阅所有感兴趣的事件
 
-    // View可以通过绑定或信号连接这些信息更新
-    int getPlayerHealth() const;
-    int getEnemyHealth() const;
-    QString getCurrentOperator() const;
+public slots:
+    void playerShootSelf();
+    void playerShootOpponent();
 
 signals:
-    void playerHealthChanged(int newHealth);
-    void enemyHealthChanged(int newHealth);
-    void operatorChanged(const QString& name);
-    void bulletInfoUpdated(const std::vector<bool>& bullets); // 仅在需要时
+    void healthChanged(const QString& playerName, int newHealth);
+    void operatorChanged(const QString& currentOperator);
+    void statusChanged(const QString& statusText);
 
 private:
-    void subscribeToEvents();
-
-    EventBus& bus;
-    int playerHealth = 6;
-    int enemyHealth = 6;
-    QString currentOperator = "Player";
-
-    std::vector<bool> bullets;  // 当前弹药信息（可用于展示枪膛）
+    EventBus& m_bus;
 };
-*/
+
 
