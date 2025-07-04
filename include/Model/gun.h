@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Common/common.h"
-#include "../event.h"
+#include "event.h"
 
 class Gun;
 using GunPtr = std::shared_ptr<Gun>;

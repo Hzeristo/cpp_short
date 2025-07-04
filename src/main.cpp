@@ -2,7 +2,7 @@
 #include <QApplication>
 #include "View/mainwindow.h"
 #include "../include/Common/common.h"
-#include "../include/event.h"
+#include "../include/Model/event.h"
 #include "../include/Model/game.h"
 #include "../include/Model/gun.h"
 #include "../include/Model/item.h"
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
     QApplication app(argc, argv);
     MainWindow window;
-    window.resize(1600, 1000);
+    window.resize(1200, 750);
     window.show();    
 
     return app.exec();             

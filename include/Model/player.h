@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Common/common.h"
-#include "../event.h"
+#include "event.h"
 
 class Player;
 using PlayerPtr = std::shared_ptr<Player>;
@@ -46,4 +46,3 @@ private:
 
   void subscribe();
 };
-
