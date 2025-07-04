@@ -1,3 +1,3 @@
-#include "../../include/event.h"
+#include "../../include/Model/event.h"
 
-Event::~Event() {};
+//Event::~Event() {};
