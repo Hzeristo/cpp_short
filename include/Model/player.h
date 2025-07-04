@@ -7,7 +7,7 @@ class Player;
 using PlayerPtr = std::shared_ptr<Player>;
 class Player : std::enable_shared_from_this<Player> {
 public:
-  Player(int maxHealth, int health, int noHealHealth, std::shared_ptr<EventBus> bus);
+  Player(std::string name, int maxHealth, int health, int noHealHealth, std::shared_ptr<EventBus> bus);
   ~Player() {}
 
   void takeDamage(int damage) {
@@ -30,11 +30,13 @@ public:
     } else {
       this->takeDamage(-delta);
     }
+    bus->publish(std::make_shared<Health2VMEvent>(m_health, this->m_username));
   }
 
   void onTryItemUseEvent(const TryItemUseEvent& event);
 
 private:
+  std::string m_username;
   int m_maxHealth;
   int m_health;
   int m_noHealHealth;

@@ -22,6 +22,7 @@ void Gun::shoot(std::string username, std::string targetname){
     if(bullets.back())
       bus->publish(std::make_shared<HealthEvent>(cut?2:1, targetname)); 
     bullets.pop_back();
+    bus->publish(std::make_shared<Bullet2VMEvent>(bullets.back()));
   }
 }
 

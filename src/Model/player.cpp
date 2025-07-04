@@ -1,8 +1,8 @@
 #include "../../include/Common/common.h"
 #include "../../include/Model/player.h"
 
-Player::Player(int maxHealth, int health, int noHealHealth, std::shared_ptr<EventBus> bus) :
-    m_maxHealth(maxHealth), m_health(maxHealth), m_noHealHealth(maxHealth), bus(bus) {
+Player::Player(std::string name, int maxHealth, int health, int noHealHealth, std::shared_ptr<EventBus> bus) :
+    m_username(name), m_maxHealth(maxHealth), m_health(maxHealth), m_noHealHealth(maxHealth), bus(bus) {
   this->subscribe();
 }
 

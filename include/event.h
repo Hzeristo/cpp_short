@@ -16,12 +16,12 @@ public:
 };
 
 class FireEvent;
-class OperatorChangeEvent;
-class Bullet2VMEvent;
-class Gun2VMEvent;
+class OperatorChangeEvent; //用于显示操作方已变化
+class Bullet2VMEvent; //用于显示子弹信息
+class Gun2VMEvent; //用于更新武器信息
 
 class HealthEvent;
-class Health2VMEvent;
+class Health2VMEvent; //用于更新血量显示
 
 class ItemUsedEvent;
 class TryItemUseEvent;
@@ -31,7 +31,7 @@ class ItemUsedBeerEvent;
 class ItemUsedMagnifierEvent;
 class ItemUsedInverterEvent;
 class ItemUsedSawEvent;
-class Item2VMEvent;
+class Item2VMEvent; //用于更新道具显示
 
 //事件总线
 class EventBus {
@@ -110,7 +110,7 @@ public:
   std::string getTarget() const { return m_target; };
   const std::string name() override { return m_name; };
 private:
-  int m_value;
+  int m_value; //显示的值
   std::string m_target;
   const std::string m_name = "Health2VMEvent";
 };
@@ -167,7 +167,6 @@ private:
   int pos; //0-7
 };
 
-
 class FireEvent : public Event {
 public:
   FireEvent(std::string username, std::string targetname) : username(username), targetname(targetname) {};
@@ -192,4 +191,15 @@ public:
 private:
   std::string username;
   std::string targetname;
+};
+
+class Bullet2VMEvent : public Event {
+public:
+  Bullet2VMEvent(bool is_real) : is_real(is_real) {};
+  ~Bullet2VMEvent() {};
+  const std::string name() override { return "Bullet2VMEvent"; }
+  bool getIsReal() const { return is_real; }
+
+private:
+  bool is_real;
 };
