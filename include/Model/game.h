@@ -8,7 +8,7 @@ class Game;
 using GamePtr = std::shared_ptr<Game>;
 class Game : public std::enable_shared_from_this<Game> {
 public:
-  Game(EventBus& bus);
+  Game(std::shared_ptr<EventBus> bus);
   ~Game() {};
 
   void initItems();
@@ -21,5 +21,5 @@ private:
   std::vector<ItemPtr> items_me;
   std::vector<ItemPtr> items_ai;
 
-  EventBus& bus;
+  std::shared_ptr<EventBus> bus;
 };

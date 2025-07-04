@@ -7,7 +7,7 @@ class Player;
 using PlayerPtr = std::shared_ptr<Player>;
 class Player : std::enable_shared_from_this<Player> {
 public:
-  Player(int maxHealth, int health, int noHealHealth, EventBus& bus);
+  Player(int maxHealth, int health, int noHealHealth, std::shared_ptr<EventBus> bus);
   ~Player() {}
 
   void takeDamage(int damage) {
@@ -40,7 +40,7 @@ private:
   int m_noHealHealth;
   bool cuffed = false;
 
-  EventBus& bus;
+  std::shared_ptr<EventBus> bus;
 
   void subscribe();
 };

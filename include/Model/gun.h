@@ -7,7 +7,7 @@ class Gun;
 using GunPtr = std::shared_ptr<Gun>;
 class Gun : public std::enable_shared_from_this<Gun> {
 public:
-  Gun(EventBus& bus);
+  Gun(std::shared_ptr<EventBus> bus);
   ~Gun() {};
 
   bool getBulletType(int index);
@@ -20,10 +20,10 @@ public:
 
   void onItemUsedSawEvent();
 
-  void subscribe(EventBus& bus);
+  void subscribe();
 
 private:
   bool cut = false;
   std::vector<bool> bullets;
-  EventBus& bus;
+  std::shared_ptr<EventBus> bus;
 };

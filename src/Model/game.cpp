@@ -1,7 +1,7 @@
 #include "../../include/Common/common.h"
 #include "../../include/Model/game.h"
 
-Game::Game(EventBus& bus) : bus(bus) {
+Game::Game(std::shared_ptr<EventBus> bus) : bus(bus) {
   this->subscribe();
 }
 
@@ -19,7 +19,7 @@ void Game::initItems() {
 
 void Game::subscribe() {
   std::weak_ptr w_self = shared_from_this();
-  bus.subscribe<ItemUsedEvent>([w_self](EventPtr e){
+  bus->subscribe<ItemUsedEvent>([w_self](EventPtr e){
     if (auto self = w_self.lock()) { 
       auto itemUsedEvent = std::static_pointer_cast<ItemUsedEvent>(e);
       self->onItemUsedEvent(itemUsedEvent);

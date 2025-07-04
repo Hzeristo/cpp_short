@@ -115,7 +115,6 @@ private:
   const std::string m_name = "Health2VMEvent";
 };
 
-
 class ItemUsedEvent : public Event {
 public:
   ItemUsedEvent(ItemType item, std::string username, std::string targetname, int pos) : item(item), username(username), targetname(targetname), pos(pos) {}
