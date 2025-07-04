@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setCentralWidget(stack);
     stack->setCurrentWidget(startPage); // start with the start page
     setWindowTitle("DemonRoulette");
-    resize(1600, 1200);
+    resize(1200, 750);
 
     connect(startPage, &StartPage::startGameClicked, this, &MainWindow::switchToGame);
 }
