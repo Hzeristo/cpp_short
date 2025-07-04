@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
+#include "../include/viewmodel.h" // Assuming ViewModel is defined in this header
 
 class GameView;
 class StartPage;
@@ -17,6 +18,7 @@ private:
     QStackedWidget* stack;
     StartPage* startPage;
     GameView* gameView;
+    ViewModel* viewModel; // Assuming ViewModel is defined in the included headers
 
 private slots:
     void switchToGame();

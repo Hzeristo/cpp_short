@@ -1,40 +1,33 @@
-#include "include/viewmodel.h"
-/*
+#include "../include/viewmodel.h"
+
 ViewModel::ViewModel(EventBus& bus, QObject* parent)
-    : QObject(parent), bus(bus) {
-    subscribeToEvents();
-}
+    : QObject(parent), m_bus(bus) {}
 
-void ViewModel::fireAtEnemy() {
-    bus.publish(std::make_shared<FireEvent>("Player", "Enemy"));
-}
-
-
-
-void ViewModel::useItem(int index) {
-    //
-    bus.publish(std::make_shared<TryItemUseEvent>(type, "Player", "Enemy", index));
-}
-
-void ViewModel::subscribeToEvents() {
-    bus.subscribe<Health2VMEvent>([this](EventPtr e) {
-        auto evt = std::dynamic_pointer_cast<Health2VMEvent>(e);
-        if (evt->getTarget() == "Player") {
-            playerHealth = evt->getValue();
-            emit playerHealthChanged(playerHealth);
-        } else {
-            enemyHealth = evt->getValue();
-            emit enemyHealthChanged(enemyHealth);
-        }
+void ViewModel::init() {
+    // 订阅生命值变化事件
+    m_bus.subscribe<Health2VMEvent>([this](EventPtr e) {
+        auto event = std::static_pointer_cast<Health2VMEvent>(e);
+        emit healthChanged(QString::fromStdString(event->getTarget()), event->getValue());
     });
 
-    bus.subscribe<OperatorChangeEvent>([this](EventPtr e) {
-        auto evt = std::dynamic_pointer_cast<OperatorChangeEvent>(e);
-        currentOperator = QString::fromStdString(evt->getTargetname());
-        emit operatorChanged(currentOperator);
+    // 订阅操作者变化事件
+    m_bus.subscribe<OperatorChangeEvent>([this](EventPtr e) {
+        auto event = std::static_pointer_cast<OperatorChangeEvent>(e);
+        emit operatorChanged(QString::fromStdString(event->getTargetname()));
     });
 
-    // 也可以订阅 Bullet2VMEvent 等自定义事件
+    // TODO：根据需要添加更多订阅
 }
 
-*/
+void ViewModel::playerShootSelf() {
+    // 玩家射击自己 -> 发布 FireEvent
+    m_bus.publish(std::make_shared<FireEvent>("player", "player"));
+    emit statusChanged("You shot yourself!");
+}
+
+void ViewModel::playerShootOpponent() {
+    // 玩家射击对手 -> 发布 FireEvent
+    m_bus.publish(std::make_shared<FireEvent>("player", "opponent"));
+    emit statusChanged("You shot your opponent!");
+}
+
