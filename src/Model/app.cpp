@@ -1,5 +1,4 @@
 #include "../../../include/Model/app.h"
-#include "app.h"
 
 App::App() {
   std::cout << "App initializing..." << std::endl;

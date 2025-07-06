@@ -1,5 +1,4 @@
 #include "../../../include/Model/components/gun.h"
-#include "gun.h"
 
 Gun::Gun() {
   std::cout << "Gun initiated" << std::endl;

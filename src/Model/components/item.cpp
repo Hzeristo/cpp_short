@@ -1,5 +1,4 @@
 #include "../../../include/Model/components/item.h"
-#include "item.h"
 
 Item::Item(ItemType type) {
   this->type = type;
