@@ -7,6 +7,32 @@
 
 class App {
 public: 
+  using IsUserAliveCallback = std::function<void(bool)>;
+  using IsAiAliveCallback = std::function<void(bool)>;
+  using OperatorCallback = std::function<void(std::string)>;
+  using TurnDoneCallback = std::function<void()>;
+  using ReloadCallback = std::function<void(int)>;
+
+  void addIsUserAliveListener(IsUserAliveCallback cb) {
+    isUserAliveListeners.push_back(std::move(cb));
+  }
+
+  void addIsAiAliveListener(IsAiAliveCallback cb) {
+    isAiAliveListeners.push_back(std::move(cb));
+  }
+
+  void addOperatorCallback(OperatorCallback cb) {
+    operatorListeners.push_back(std::move(cb));
+  }
+
+  void addTurnDoneCallback(TurnDoneCallback cb) {
+    turnDoneListeners.push_back(std::move(cb));
+  }
+
+  void addReloadCallback(ReloadCallback cb) {
+    reloadListeners.push_back(std::move(cb));
+  }
+
   App();
 
   bool getOperator() const;
@@ -14,9 +40,12 @@ public:
 
   void init();
 
+  void restart();
+
   bool gunEmpty() const;
   bool getBulletType(int index) const;
   bool getCut() const;
+  int getGunSize() const;
 
   const std::vector<char>& getBullets() const;
   
@@ -27,10 +56,11 @@ public:
   int getMaxHealth(std::string name) const; 
   int getNoHealHealth(std::string name) const;
   bool getCuffed(std::string name) const;
-  
-  bool shoot(std::string username, std::string targetname);
+  //包括子弹减少，击中受伤，交换操作方，通知轮次结束的功能
+  void shoot(std::string username, std::string targetname);
 
-  bool checkEnd();
+  bool checkEnd() const;
+  void setAlive();
 
   void initItems(std::string name, int num);
 
@@ -40,6 +70,8 @@ public:
   bool useItem(std::string username, std::string targetname, int pos);
 
 private: 
+  void aiTurn();
+
   std::unique_ptr<Gun> gun;
   std::unique_ptr<Player> player_ai;
   std::unique_ptr<Player> player_user;
@@ -47,6 +79,17 @@ private:
   std::vector<std::shared_ptr<Item>> ai_items;
   std::vector<std::shared_ptr<Item>> user_items;
 
+  std::vector<IsUserAliveCallback> isUserAliveListeners;
+  std::vector<IsAiAliveCallback> isAiAliveListeners;
+  std::vector<OperatorCallback> operatorListeners;
+  std::vector<TurnDoneCallback> turnDoneListeners;
+  std::vector<ReloadCallback> reloadListeners;
+
+  bool running = false;
+  bool isAlive_ai = true;
+  bool isAlive_user = true;
+  int turn = 0;
+
   bool is_me;
-  int same_round = 0;
+  int same_turn = 0;
 };

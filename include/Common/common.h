@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include <random>
+#include <functional>
 
 //不全
 enum class ItemType {
@@ -35,3 +36,5 @@ inline const ItemType from_string(const std::string& type) {
   if (type == "Inverter") return ItemType::Inverter;
   return ItemType::Unknown;
 }
+
+class App;

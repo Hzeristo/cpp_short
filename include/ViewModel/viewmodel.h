@@ -1,18 +1,17 @@
 #pragma once
-#pragma once
-#pragma once
 
 #include <QObject>
 #include <QString>
 #include "Common/common.h"
+#include "Model/app.h"
 
 class ViewModel : public QObject {
     Q_OBJECT
 
 public:
-    ViewModel(QObject* parent = nullptr);
+    explicit ViewModel(QObject* parent = nullptr);
 
-    void init();  // 订阅所有感兴趣的事件
+    void init();  
 
 public slots:
     void playerShootSelf();
@@ -24,7 +23,7 @@ signals:
     void statusChanged(const QString& statusText);
 
 private:
-
+    std::unique_ptr<App> app;
 };
 
 

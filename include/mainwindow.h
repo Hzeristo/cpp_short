@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
-#include "../include/viewmodel.h" // Assuming ViewModel is defined in this header
+#include "../include/ViewModel/viewmodel.h" // Assuming ViewModel is defined in this header
 
 class GameView;
 class StartPage;
