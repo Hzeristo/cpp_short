@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <memory>
+#include <vector>
+#include <random>
 
 //不全
 enum class ItemType {
@@ -9,7 +11,9 @@ enum class ItemType {
   Saw,
   Magnifier,
   Cuff,
-  Inverter
+  Inverter,
+  Unknown,
+  ItemType_Max
 };
 
 inline const std::string to_string(ItemType type) {
@@ -21,4 +25,13 @@ inline const std::string to_string(ItemType type) {
     case ItemType::Inverter: return "Inverter";
     default: return "Unknown";
   }
+}
+
+inline const ItemType from_string(const std::string& type) {
+  if (type == "Beer") return ItemType::Beer;
+  if (type == "Saw") return ItemType::Saw;
+  if (type == "Magnifier") return ItemType::Magnifier;
+  if (type == "Cuff") return ItemType::Cuff;
+  if (type == "Inverter") return ItemType::Inverter;
+  return ItemType::Unknown;
 }

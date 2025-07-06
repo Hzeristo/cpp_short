@@ -5,13 +5,12 @@
 #include <QObject>
 #include <QString>
 #include "Common/common.h"
-#include "Model/event.h"
 
 class ViewModel : public QObject {
     Q_OBJECT
 
 public:
-    ViewModel(EventBus& bus, QObject* parent = nullptr);
+    ViewModel(QObject* parent = nullptr);
 
     void init();  // 订阅所有感兴趣的事件
 
@@ -25,7 +24,7 @@ signals:
     void statusChanged(const QString& statusText);
 
 private:
-    EventBus& m_bus;
+
 };
 
 
