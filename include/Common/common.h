@@ -39,7 +39,7 @@ inline const ItemType from_string(const std::string& type) {
 
 class App;
 
-std::string bullets2String(const std::vector<char>& bullets) {
+inline std::string bullets2String(const std::vector<char>& bullets) {
     int real = 0, fake = 0;
 
     for (char c : bullets) {
