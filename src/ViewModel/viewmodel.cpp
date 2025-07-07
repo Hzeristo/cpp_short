@@ -1,6 +1,6 @@
 #include "../include/ViewModel/viewmodel.h"
 
-explicit ViewModel::ViewModel(QObject* parent) : QObject(parent) {
+ViewModel::ViewModel(QObject* parent) : QObject(parent) {
   app = std::make_unique<App>();
   this->init();
 }
@@ -28,7 +28,7 @@ void ViewModel::init() {
 void ViewModel::playerShootSelf() {
   if(app->gunEmpty()) {
     app->reload(1);
-    //emit
+    emit statusChanged("Reloading");
   }
   app->shoot("me", "me");
   

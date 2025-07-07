@@ -19,8 +19,12 @@ bool Gun::isEmpty() const {
 }
 
 bool Gun::getBulletType(int index) const {
-  if(!checkBulletIndex(index)) return;
+  if(!checkBulletIndex(index)) return false;
   return bullets[index];
+}
+
+bool Gun::getCut() const {
+  return cut;
 }
 
 void Gun::setBulletType(int index, bool type) {

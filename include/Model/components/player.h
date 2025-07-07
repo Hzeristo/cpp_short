@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Common/common.h"
+#include "../../Common/common.h"
 
 class Player;
 using PlayerPtr = std::shared_ptr<Player>;

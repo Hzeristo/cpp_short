@@ -1,5 +1,4 @@
 #include "../../../include/Model/app.h"
-#include "app.h"
 
 App::App() {
   std::cout << "App initializing..." << std::endl;
@@ -168,13 +167,14 @@ bool App::useItem(std::string username, std::string targetname, int pos) {
     user_items.erase(user_items.begin() + pos);
   else 
     ai_items.erase(ai_items.begin() + pos);
-  switch (item.getType())
-    case ItemType::Beer: 
-    case ItemType::Cuff: 
-    case ItemType::Inverter:
-    case ItemType::Magnifier:
-    case ItemType::Saw:
-    default:
+  // switch (item.getType())
+  //   case ItemType::Beer: 
+  //   case ItemType::Cuff: 
+  //   case ItemType::Inverter:
+  //   case ItemType::Magnifier:
+  //   case ItemType::Saw:
+  //   default:
+  return false;
 }
 
 void App::aiTurn() {
