@@ -1,7 +1,7 @@
 #include "../include/ViewModel/viewmodel.h"
 
 ViewModel::ViewModel(QObject* parent) : QObject(parent) {
-  app = std::make_unique<App>();
+  app = std::make_unique<Model>();
   this->init();
 }
 

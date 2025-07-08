@@ -1,23 +1,23 @@
-#include "../../../include/Model/app.h"
+#include "../../../include/Model/model.h"
 
-App::App() {
+Model::Model() {
   std::cout << "App initializing..." << std::endl;
   init();
   std::cout << "App initialized" << std::endl;
 }
 
-bool App::getOperator() const {
+bool Model::getOperator() const {
   return is_me;
 }
 
-void App::switchOperator() {
+void Model::switchOperator() {
   is_me = !is_me;
   for (const auto& cb : operatorListeners) {
     cb(is_me ? "me" : "ai");
   }
 }
 
-void App::init() {
+void Model::init() {
   std::cout << "New Game initializing..." << std::endl;
   gun = std::make_unique<Gun>();
   gun->initBullets(6);
@@ -30,65 +30,65 @@ void App::init() {
   std::cout << "New Game initialized" << std::endl;
 }
 
-void App::restart() {
+void Model::restart() {
   init();
 }
 
-bool App::gunEmpty() const {
+bool Model::gunEmpty() const {
   return gun->isEmpty();
 }
 
-bool App::getBulletType(int index) const {
+bool Model::getBulletType(int index) const {
   return gun->getBulletType(index);
 }
 
-bool App::getCut() const {
+bool Model::getCut() const {
   return gun->getCut();
 }
 
-int App::getGunSize() const {
+int Model::getGunSize() const {
   return (int)gun->getBullets().size();
 }
 
-const std::vector<char> &App::getBullets() const {
+const std::vector<char> &Model::getBullets() const {
   return gun->getBullets();
 }
 
-bool App::invertCurrentBullet() {
+bool Model::invertCurrentBullet() {
   gun->invertCurrentBulletType();
   return true;
 }
 
-bool App::reload(int num = 6) {
+bool Model::reload(int num = 6) {
   gun->initBullets(num);
   return true;
 }
 
-int App::getHealth(std::string name) const {
+int Model::getHealth(std::string name) const {
   if (name == "me") 
     return player_user->getHealth();
   return player_ai->getHealth();
 }
 
-int App::getMaxHealth(std::string name) const {
+int Model::getMaxHealth(std::string name) const {
   if (name == "me") 
     return player_user->getMaxHealth();
   return player_ai->getMaxHealth();     
 }
 
-int App::getNoHealHealth(std::string name) const {
+int Model::getNoHealHealth(std::string name) const {
   if (name == "me") 
     return player_user->getNoHealHealth();
   return player_ai->getNoHealHealth();
 }
 
-bool App::getCuffed(std::string name) const {
+bool Model::getCuffed(std::string name) const {
   if (name == "me") 
     return player_user->getCuffed();
   return player_ai->getCuffed();
 }
 
-void App::shoot(std::string username, std::string targetname) {
+void Model::shoot(std::string username, std::string targetname) {
   int damage = gun->shoot();
   targetname == "me" ? player_user->takeDamage(damage) : player_ai->takeDamage(damage);
   if ((username == targetname && damage > 0) || username != targetname && damage == 0) {
@@ -112,11 +112,11 @@ void App::shoot(std::string username, std::string targetname) {
     aiTurn();
 }
 
-bool App::checkEnd() const {
+bool Model::checkEnd() const {
   return player_user->getHealth() <= 0 || player_ai->getHealth() <= 0;
 }
 
-void App::setAlive() {
+void Model::setAlive() {
   if(checkEnd()) {
     if (player_user->getHealth() <= 0) {
       isAlive_user = false;
@@ -132,7 +132,7 @@ void App::setAlive() {
   }
 }
 
-void App::initItems(std::string name, int num) {
+void Model::initItems(std::string name, int num) {
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_int_distribution<int> dist(0, static_cast<int>(ItemType::ItemType_Max) - 1);
@@ -147,21 +147,21 @@ void App::initItems(std::string name, int num) {
   }
 }
 
-ItemType App::getItemType(std::string name, int pos) const {
+ItemType Model::getItemType(std::string name, int pos) const {
   if (name == "me") 
     return user_items[pos]->getType();
   else 
     return ai_items[pos]->getType();
 }
 
-const Item &App::getItem(std::string name, int pos) const {
+const Item &Model::getItem(std::string name, int pos) const {
   if (name == "me")
     return *user_items[pos];
   else 
     return *ai_items[pos];
 }
 
-bool App::useItem(std::string username, std::string targetname, int pos) {
+bool Model::useItem(std::string username, std::string targetname, int pos) {
   const auto &item = getItem(username, pos);
   if (username == "me") 
     user_items.erase(user_items.begin() + pos);
@@ -177,7 +177,7 @@ bool App::useItem(std::string username, std::string targetname, int pos) {
   return false;
 }
 
-void App::aiTurn() {
+void Model::aiTurn() {
   if(!player_ai->getCuffed()) {
     if(gunEmpty()) {
       reload();

@@ -8,7 +8,7 @@
 //#include "../include/Model/components/player.h"
 //#include "../include/Model/components/gun.h"
 //#include "../include/Model/components/item.h"
-#include "../include/Model/app.h"
+#include "../include/Model/model.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     stack = new QStackedWidget(this);
@@ -44,6 +44,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     //                  gameView, &GameView::updateOperator);
 }
 MainWindow::~MainWindow() {}
+
 
 
 void MainWindow::switchToGame() {

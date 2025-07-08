@@ -3,7 +3,7 @@
 #include <QObject>
 #include <QString>
 #include "Common/common.h"
-#include "Model/app.h"
+#include "Model/model.h"
 
 class ViewModel : public QObject {
     Q_OBJECT
@@ -27,7 +27,7 @@ signals:
     void reloaded(const QString& bulletinfo);
 
 private:
-    std::unique_ptr<App> app;
+    std::unique_ptr<Model> app;
 };
 
 

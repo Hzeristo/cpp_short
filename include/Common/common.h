@@ -37,7 +37,7 @@ inline const ItemType from_string(const std::string& type) {
   return ItemType::Unknown;
 }
 
-class App;
+class Model;
 
 inline std::string bullets2String(const std::vector<char>& bullets) {
     int real = 0, fake = 0;

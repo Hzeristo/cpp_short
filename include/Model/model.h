@@ -5,7 +5,7 @@
 #include "components/item.h"
 #include "components/player.h"
 
-class App {
+class Model {
 public: 
   using IsUserAliveCallback = std::function<void(bool)>;
   using IsAiAliveCallback = std::function<void(bool)>;
@@ -33,7 +33,7 @@ public:
     reloadListeners.push_back(std::move(cb));
   }
 
-  App();
+  Model();
 
   bool getOperator() const;
   void switchOperator();
