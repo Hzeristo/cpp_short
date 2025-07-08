@@ -130,7 +130,6 @@ void Model::shoot(std::string username, std::string targetname) {
 }
 
 void Model::aiShoot(std::string username, std::string targetname) {
-  std::this_thread::sleep_for(std::chrono::seconds(2)); 
   for (const auto& cb : bulletInfoListeners) {
     std::cout << "Bullet type: " << gun->getCurrentBulletType() << std::endl;
     cb(gun->getCurrentBulletType() ? "real" : "fake");
@@ -249,16 +248,16 @@ void Model::aiTurn() {
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> dist(0, 1);
     int action = dist(gen);
-    if (action == 0) {
-      aiShoot("ai", "ai");
-    } else {
-      aiShoot("ai", "me");
+    for (const auto& cb : aiActionListeners) {
+      cb(action);
     }
   }
+}
+
+void Model::nextTurn() {
   turn++;
   for (const auto& cb : turnDoneListeners) {
     std::cout << "Turn done" << std::endl;
     cb();
   }
-  return; 
 }

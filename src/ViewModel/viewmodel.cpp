@@ -37,6 +37,17 @@ void ViewModel::init() {
     std::cout << "bulletType signal emitted" << std::endl;
     emit bulletType(QString::fromStdString(bulletinfo));
   });
+
+  app->addAiActionCallback([this](int action) {
+    QTimer::singleShot(1000, this, [this, action]() {
+      if (action == 0)
+        app->aiShoot("ai", "ai");
+      else
+        app->aiShoot("ai", "me");
+      app->nextTurn();
+    });
+  });
+
 }
 
 void ViewModel::playerShootSelf() {
@@ -60,7 +71,7 @@ void ViewModel::playerShootOpponent() {
     const auto bullets = app->getBullets();
     emit reloaded(QString::fromStdString(bullets2String(bullets)));
   }
-  app->shoot("me", "opponent");
+  app->shoot("me", "ai");
   return;
 }
 

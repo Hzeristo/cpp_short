@@ -6,7 +6,7 @@
 #include <random>
 #include <functional>
 #include <thread>
-#include <chrono>
+#include <QTimer>
 
 //不全
 enum class ItemType {

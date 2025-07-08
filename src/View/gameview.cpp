@@ -55,10 +55,12 @@ void GameView::updateStatusText(const QString& text) {
 
 void GameView::updateHealth(const QString& playerName, int health) {
     if (playerName == "me") {
+        std::cout << "Updating health for player: " << playerName.toStdString() << ", health: " << health << std::endl;
         healthLabelSelf->setText("Your HP: " + QString::number(health));
         QApplication::processEvents();
     }
      else if (playerName == "ai") {
+        std::cout << "Updating health for player: " << playerName.toStdString() << ", health: " << health << std::endl;
         healthLabelEnemy->setText("Enemy HP: " + QString::number(health));
         QApplication::processEvents();
     }
