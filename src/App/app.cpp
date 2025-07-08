@@ -14,4 +14,8 @@ App::App(MainWindow& window) : mainWindow(window) {
                     mainWindow.gameView, &GameView::updateHealth);
     QObject::connect(viewModel, &ViewModel::operatorChanged,
                     mainWindow.gameView, &GameView::updateOperator);
+    QObject::connect(viewModel, &ViewModel::userDead,
+                     mainWindow.gameView, &GameView::playerdie);
+    QObject::connect(viewModel, &ViewModel::aiDead,
+                     mainWindow.gameView, &GameView::aidie);
 }

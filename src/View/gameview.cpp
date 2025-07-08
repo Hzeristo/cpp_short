@@ -28,9 +28,13 @@ GameView::GameView(QWidget* parent) : QWidget(parent) {
     connect(opponentButton, &QPushButton::clicked, this, &GameView::shootOpponent);
 
      // 状态栏标签（显示回合、提示信息等）
-    statusLabel = new QLabel("Game Start", this);
+    statusLabel = new QLabel("current operator: me", this);
     statusLabel->setGeometry(500, 50, 400, 50);
     statusLabel->setStyleSheet("color: white; font-size: 24px;");
+
+    bulletLabel = new QLabel("Last bullet type:", this);
+    bulletLabel->setGeometry(500, 100, 200, 50);
+    bulletLabel->setStyleSheet("color: white; font-size: 18px;");
 
     // 玩家血量显示
     healthLabelSelf = new QLabel("Your HP: 4", this);
@@ -58,4 +62,8 @@ void GameView::updateHealth(const QString& playerName, int health) {
 
 void GameView::updateOperator(const QString& operatorName) {
     statusLabel->setText("Current turn: " + operatorName);
+}
+
+void GameView::updateBulletInfo(const QString& bulletInfo) {
+    bulletLabel->setText("Last bullet type: " + bulletInfo);
 }
