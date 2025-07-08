@@ -2,7 +2,6 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
-#include "../include/ViewModel/viewmodel.h" // Assuming ViewModel is defined in this header
 #include "../include/View/endpage1.h"
 #include "../include/View/endpage2.h"
 
@@ -16,13 +15,12 @@ public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
 
-private:
+public:
     QStackedWidget* stack;
     StartPage* startPage;
     GameView* gameView;
     EndPage1* endpage1;
     EndPage2* endpage2;
-    //ViewModel* viewModel; 
 
 private slots:
     void switchToGame();

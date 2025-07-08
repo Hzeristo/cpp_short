@@ -31,17 +31,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     connect(gameView, &GameView::aidie, this, &MainWindow::switchToEndPage1);
     connect(gameView, &GameView::playerdie, this, &MainWindow::switchToEndPage2);
     
-    // QObject::connect(gameView, &GameView::shootSelf,
-    //                  viewModel, &ViewModel::playerShootSelf);
-    // QObject::connect(gameView, &GameView::shootOpponent,
-    //                  viewModel, &ViewModel::playerShootOpponent);
-                     
-    // QObject::connect(viewModel, &ViewModel::statusChanged,
-    //                  gameView, &GameView::updateStatusText);
-    // QObject::connect(viewModel, &ViewModel::healthChanged,
-    //                  gameView, &GameView::updateHealth);
-    // QObject::connect(viewModel, &ViewModel::operatorChanged,
-    //                  gameView, &GameView::updateOperator);
 }
 MainWindow::~MainWindow() {}
 

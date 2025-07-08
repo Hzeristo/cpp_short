@@ -14,6 +14,7 @@ file(GLOB_RECURSE MODEL_SRC ${CMAKE_SOURCE_DIR}/src/Model/*.cpp)
 file(GLOB_RECURSE VIEW_SRC ${CMAKE_SOURCE_DIR}/src/View/*.cpp)
 file(GLOB_RECURSE VIEWMODEL_SRC ${CMAKE_SOURCE_DIR}/src/ViewModel/*.cpp)
 file(GLOB_RECURSE COMMON_SRC ${CMAKE_SOURCE_DIR}/src/Common/*.cpp)
+file(GLOB_RECURSE APP_SRC ${CMAKE_SOURCE_DIR}/src/App/*.cpp)
 file(GLOB_RECURSE ALL_HEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
 #qt_add_resources(APP_RESOURCES assets/startpage.qrc)
 
@@ -24,6 +25,7 @@ add_executable(${PROJECT_NAME}
     ${VIEW_SRC}
     ${VIEWMODEL_SRC}
     ${COMMON_SRC}
+    ${APP_SRC}
     ${ALL_HEADERS}
 )
 
