@@ -91,9 +91,11 @@ bool Model::getCuffed(std::string name) const {
 }
 
 void Model::shoot(std::string username, std::string targetname) {
+  std::cout << "Bullet type in shoot(): " << gun->getCurrentBulletType() << std::endl;
+  std::cout << "Bullet type in shoot(): " << gun->getCurrentBulletType() << std::endl;
   for (const auto& cb : bulletInfoListeners) {
-    std::cout << "Bullet type: " << gun->getCurrentBulletType() << std::endl;
     cb(gun->getCurrentBulletType() ? "real" : "fake");
+    std::cout << "Bullet type in shoot(): " << gun->getCurrentBulletType() << std::endl;
   }
   int damage = gun->shoot();
   targetname == "me" ? player_user->takeDamage(damage) : player_ai->takeDamage(damage);
