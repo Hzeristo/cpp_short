@@ -1,5 +1,6 @@
 // gameview.cpp
 #include <iostream>
+#include <QApplication>
 #include "../../include/View/gameview.h"
 #include <QPushButton>
 #include <QLabel>
@@ -55,15 +56,23 @@ void GameView::updateStatusText(const QString& text) {
 void GameView::updateHealth(const QString& playerName, int health) {
     if (playerName == "me") {
         healthLabelSelf->setText("Your HP: " + QString::number(health));
-    } else if (playerName == "ai") {
+        QApplication::processEvents();
+    }
+     else if (playerName == "ai") {
         healthLabelEnemy->setText("Enemy HP: " + QString::number(health));
+        QApplication::processEvents();
     }
 }
+    
 
 void GameView::updateOperator(const QString& operatorName) {
     statusLabel->setText("Current turn: " + operatorName);
+    QApplication::processEvents();
 }
 
 void GameView::updateBulletInfo(const QString& bulletInfo) {
+    std::cout << "Updating bullet info: " << bulletInfo.toStdString() << std::endl;
+    
     bulletLabel->setText("Last bullet type: " + bulletInfo);
+    QApplication::processEvents(); // 确保界面更新
 }
