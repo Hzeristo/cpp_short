@@ -1,5 +1,4 @@
 #include "../../include/View/startpage.h"
-#include <iostream>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QPixmap>

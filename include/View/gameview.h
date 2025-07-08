@@ -15,6 +15,8 @@ public:
 signals:
     void shootSelf();
     void shootOpponent();
+    void aidie();
+    void playerdie();
 
 public slots:
     void updateStatusText(const QString& text);  // 显示游戏信息
