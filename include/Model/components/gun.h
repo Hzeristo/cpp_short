@@ -15,6 +15,8 @@ public:
 
   bool getBulletType(int index) const;
 
+  bool getCurrentBulletType() const;
+
   bool getCut() const;
 
   const std::vector<char>& getBullets() const;

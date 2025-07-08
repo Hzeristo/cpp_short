@@ -13,6 +13,7 @@ public:
   using TurnDoneCallback = std::function<void()>;
   using ReloadCallback = std::function<void(int)>;
   using healthCallback = std::function<void(std::string, int)>;
+  using bulletInfoCallback = std::function<void(std::string)>;
 
   void addIsUserAliveListener(IsUserAliveCallback cb) {
     isUserAliveListeners.push_back(std::move(cb));
@@ -36,6 +37,10 @@ public:
 
   void addHealthCallback(healthCallback cb) {
     healthListeners.push_back(std::move(cb));
+  }
+
+  void addBulletInfoCallback(std::function<void(std::string)> cb) {
+    bulletInfoListeners.push_back(std::move(cb));
   }
 
   Model();
@@ -92,6 +97,7 @@ private:
   std::vector<TurnDoneCallback> turnDoneListeners;
   std::vector<ReloadCallback> reloadListeners;
   std::vector<healthCallback> healthListeners;
+  std::vector<bulletInfoCallback> bulletInfoListeners;
 
   bool running = false;
   bool isAlive_ai = true;

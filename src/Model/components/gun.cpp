@@ -24,8 +24,13 @@ bool Gun::getBulletType(int index) const {
   return bullets[index];
 }
 
-bool Gun::getCut() const {
-  return cut;
+bool Gun::getCurrentBulletType() const {
+  return bullets.back();
+}
+
+bool Gun::getCut() const
+{
+    return cut;
 }
 
 void Gun::setBulletType(int index, bool type) {

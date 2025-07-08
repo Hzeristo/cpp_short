@@ -25,6 +25,7 @@ signals:
     void aiDead();
     void turnDone();
     void reloaded(const QString& bulletinfo);
+    void bulletType(const QString& bulletinfo);
 
 private:
     std::unique_ptr<Model> app;

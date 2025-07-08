@@ -14,19 +14,28 @@ void ViewModel::init() {
   });
 
   app->addTurnDoneCallback([this]() {
+    std::cout << "turnDone signal emitted" << std::endl;
     emit turnDone();
   });
 
   app->addIsUserAliveListener([this](bool alive) {
+    std::cout << "userDead signal emitted" << std::endl;
     emit userDead();
   });
 
   app->addIsAiAliveListener([this](bool alive) {
+    std::cout << "aiDead signal emitted" << std::endl;
     emit aiDead();
   });
 
   app->addHealthCallback([this](std::string name, int health) {
+    std::cout << "healthChanged signal emitted" << std::endl;
     emit healthChanged(QString::fromStdString(name), health);
+  });
+
+  app->addBulletInfoCallback([this](std::string bulletinfo) {
+    std::cout << "bulletType signal emitted" << std::endl;
+    emit bulletType(QString::fromStdString(bulletinfo));
   });
 }
 

@@ -18,4 +18,6 @@ App::App(MainWindow& window) : mainWindow(window) {
                      mainWindow.gameView, &GameView::playerdie);
     QObject::connect(viewModel, &ViewModel::aiDead,
                      mainWindow.gameView, &GameView::aidie);
+    QObject::connect(viewModel, &ViewModel::bulletType,
+                    mainWindow.gameView, &GameView::updateBulletInfo);
 }
