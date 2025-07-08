@@ -33,12 +33,12 @@ GameView::GameView(QWidget* parent) : QWidget(parent) {
     statusLabel->setStyleSheet("color: white; font-size: 24px;");
 
     // 玩家血量显示
-    healthLabelSelf = new QLabel("Your HP: 3", this);
+    healthLabelSelf = new QLabel("Your HP: 4", this);
     healthLabelSelf->setGeometry(100, 200, 200, 50);
     healthLabelSelf->setStyleSheet("color: white; font-size: 18px;");
 
     // 对手血量显示
-    healthLabelEnemy = new QLabel("Enemy HP: 3", this);
+    healthLabelEnemy = new QLabel("Enemy HP: 4", this);
     healthLabelEnemy->setGeometry(900, 200, 200, 50);
     healthLabelEnemy->setStyleSheet("color: white; font-size: 18px;");
 }
@@ -49,9 +49,9 @@ void GameView::updateStatusText(const QString& text) {
 
 
 void GameView::updateHealth(const QString& playerName, int health) {
-    if (playerName == "player") {
+    if (playerName == "me") {
         healthLabelSelf->setText("Your HP: " + QString::number(health));
-    } else if (playerName == "enemy") {
+    } else if (playerName == "ai") {
         healthLabelEnemy->setText("Enemy HP: " + QString::number(health));
     }
 }
