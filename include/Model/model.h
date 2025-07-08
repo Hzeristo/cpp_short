@@ -9,9 +9,10 @@ class Model {
 public: 
   using IsUserAliveCallback = std::function<void(bool)>;
   using IsAiAliveCallback = std::function<void(bool)>;
-  using OperatorCallback = std::function<void(std::string)>;
+  using StringCallback = std::function<void(std::string)>;
   using TurnDoneCallback = std::function<void()>;
   using ReloadCallback = std::function<void(int)>;
+  using healthCallback = std::function<void(std::string, int)>;
 
   void addIsUserAliveListener(IsUserAliveCallback cb) {
     isUserAliveListeners.push_back(std::move(cb));
@@ -21,8 +22,8 @@ public:
     isAiAliveListeners.push_back(std::move(cb));
   }
 
-  void addOperatorCallback(OperatorCallback cb) {
-    operatorListeners.push_back(std::move(cb));
+  void addStringCallback(StringCallback cb) {
+    stringListeners.push_back(std::move(cb));
   }
 
   void addTurnDoneCallback(TurnDoneCallback cb) {
@@ -31,6 +32,10 @@ public:
 
   void addReloadCallback(ReloadCallback cb) {
     reloadListeners.push_back(std::move(cb));
+  }
+
+  void addHealthCallback(healthCallback cb) {
+    healthListeners.push_back(std::move(cb));
   }
 
   Model();
@@ -59,6 +64,8 @@ public:
   //包括子弹减少，击中受伤，交换操作方，通知轮次结束的功能
   void shoot(std::string username, std::string targetname);
 
+  void aiShoot(std::string username, std::string targetname);
+
   bool checkEnd() const;
   void setAlive();
 
@@ -81,9 +88,10 @@ private:
 
   std::vector<IsUserAliveCallback> isUserAliveListeners;
   std::vector<IsAiAliveCallback> isAiAliveListeners;
-  std::vector<OperatorCallback> operatorListeners;
+  std::vector<StringCallback> stringListeners;
   std::vector<TurnDoneCallback> turnDoneListeners;
   std::vector<ReloadCallback> reloadListeners;
+  std::vector<healthCallback> healthListeners;
 
   bool running = false;
   bool isAlive_ai = true;

@@ -5,6 +5,8 @@
 #include <vector>
 #include <random>
 #include <functional>
+#include <thread>
+#include <chrono>
 
 //不全
 enum class ItemType {
@@ -41,11 +43,9 @@ class Model;
 
 inline std::string bullets2String(const std::vector<char>& bullets) {
     int real = 0, fake = 0;
-
     for (char c : bullets) {
         if (c == '1') ++real;
         else ++fake;
     }
-
-    return "实弹: " + std::to_string(real) + " 虚弹: " + std::to_string(fake);
+    return "true: " + std::to_string(real) + " false: " + std::to_string(fake);
 }

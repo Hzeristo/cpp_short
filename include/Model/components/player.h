@@ -10,11 +10,7 @@ public:
   ~Player();
 
   void takeDamage(int damage) {
-    if(damage > m_health - m_noHealHealth) {
-      m_health = m_noHealHealth;
-    } else {
-      m_health -= damage;
-    }
+    m_health -= damage;
   };
 
   void heal(int health) {
